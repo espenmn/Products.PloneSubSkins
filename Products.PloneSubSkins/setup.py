@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '3.2'
+version = '4.7.2'
 
 setup(name='Products.PloneSubSkins',
       version=version,
@@ -25,11 +25,12 @@ setup(name='Products.PloneSubSkins',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'medialog.subskins'
           # -*- Extra requirements: -*-
       ],
-      entry_points= {
-          'console_scripts': [
-              'makesubskinspreviews = Products.PloneSubSkins.utils:run_script',
-          ]
-      }
-)
+      entry_points="""
+      # -*- Entry points: -*-
+      [z3c.autoinclude.plugin]
+      target = plone
+      """,
+      )

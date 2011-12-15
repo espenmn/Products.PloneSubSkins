@@ -1,1 +1,0 @@
-See http://pypi.python.org/pypi/Products.PloneSubSkins/
