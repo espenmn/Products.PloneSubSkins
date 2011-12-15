@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<import-steps>
+
+  <import-step 
+    id="PloneSubSkins-Hide-Tools-From-Navigation" 
+    handler="Products.PloneSubSkins.setuphandlers.setupHideToolsFromNavigation"
+    title="Hide Custom tools from Navigation for PloneSubSkins"
+    version="2008-02-23T20:35:37.468931">
+   Hides custom tools from navigation tree for PloneSubSkins
+ </import-step>
+ <import-step 
+    id="PloneSubSkins-Update-RoleMappings" 
+    handler="Products.PloneSubSkins.setuphandlers.updateRoleMappings"
+    title="Update Workflow role mappings for PloneSubSkins"
+    version="2008-02-23T20:35:37.468931">
+   updates the workflow role mappings for PloneSubSkins
+ </import-step>
+ <import-step 
+    id="PloneSubSkins-Ensure-No-Empty_values" 
+    handler="Products.PloneSubSkins.setuphandlers.ensure_all_options_are_set"
+    title="Ensure all options have a value"
+    version="2010-02-21T15:35:37.468931">
+    <dependency step="toolset"/>
+    <dependency step="skins"/>
+   This step is intended to run after a product using subskins is installed.
+   It will choose a value for each option of the subskins control panel,
+   avoiding the site layout to break upon installation.
+ </import-step>
+
+</import-steps>
+ 

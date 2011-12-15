@@ -1,0 +1,1 @@
+/*  For SubSkins  <dtml-with get_base_properties mapping>  (do not remove this)  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)*/#top_stylesheet_option {    background: &dtml-SubSkinsColor2;;}/* </dtml-with> */

@@ -1,0 +1,66 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser">
+
+
+  <browser:page
+      for="*"
+      name="subskins_choice_form"
+      template="subskins_choice_form.pt"
+      permission="cmf.ManagePortal"
+      class=".views.ChoiceForm"
+      />
+
+
+  <browser:page
+      for="*"
+      name="css_debug_mode_control"
+      permission="cmf.ManagePortal"
+      class=".views.CssDebugModeControl"
+      allowed_interface=".views.ICssDebugModeControl"
+      />
+
+  <browser:page
+      for="..interfaces.ISubSkinsTool"
+      name="updateLogo"
+      permission="cmf.ManagePortal"
+      class=".views.UpdateLogo"
+      />
+
+  <browser:page
+      for="*"
+      name="subskins_get_base_properties"
+      permission="zope2.Public"
+      class=".views.get_base_properties"
+      />
+
+  <browser:page
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="subskins_getimage"
+      permission="zope2.Public"
+      class=".views.ColorizedImage"
+      />
+
+  <browser:page
+      for="*"
+      name="dim_to"
+      permission="zope2.View"
+      class=".views.ColorDimTo"
+      allowed_attributes="black white"
+      />
+
+
+
+  <browser:resource
+      name="skin_form_load.js"
+      file="skin_form_load.js"
+  />
+
+  <browser:resource
+      name="plonesubskins_styles.css"
+      file="plonesubskins_styles.css"
+  />
+
+
+</configure>
+

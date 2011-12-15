@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <object name="site_actions" meta_type="CMF Action Category">
+  <object name="subskins_setup" meta_type="CMF Action" i18n:domain="PloneSubskins">
+   <property name="title" i18n:translate="">Subskins Setup</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${portal_url}/portal_subskinstool</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="Manage portal"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+</object>

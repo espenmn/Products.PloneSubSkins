@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<metal:block metal:fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+<body>
+
+<div metal:fill-slot="main">
+
+    <h1 i18n:translate="heading_skin_setup">SubSkins Setup, customize the look of your site</h1>
+
+    <a href=""
+       class="link-parent"
+       tal:attributes="href string: $portal_url/plone_control_panel"
+       i18n:translate="label_up_to_plone_setup">
+    Up to Site Setup
+    </a>
+
+    <form name="uploadlogo"
+          method="post"
+          enctype="multipart/form-data"
+          tal:attributes="action string:${here_url}/updateLogo">
+		<fieldset>
+			<legend>Site logo</legend>
+			<img src="logo.jpg"><br>Upload a new image as logo:<br/>
+			<input type="file" name="newlogo" class="context"/><br/>
+			Note: if the new logo is not displayed, refresh the page.<br/>
+			<input type="submit" name="submit_upload" value="Update" class="context"/>
+			<input type="submit" name="submit_restore" value="Restore default logo" class="context"/>
+		</fieldset>
+    </form>
+    
+    <tal:block tal:replace="structure here/@@subskins_choice_form" />
+
+</div>
+
+</body>
+</html>

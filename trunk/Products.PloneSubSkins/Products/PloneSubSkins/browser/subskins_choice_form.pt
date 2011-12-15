@@ -1,0 +1,321 @@
+	<script type="text/javascript" src="jquery.shortkeys.js"></script>	
+
+<span tal:attributes=" class python: view.detatched and 'detatched' or ''">
+<form name="prefs"
+  method="post"
+  class="enableUnloadProtection plonesubskins_choice_form"
+  tal:attributes="action string:${view/tool_url}/saveStylesheetChoices"
+  tal:define="portal_url view/portal_url;"
+  id="subskins_prefs_styles">
+
+        <fieldset  >
+            <legend i18n:translate="legend_portalskin_details">[↓] Select layout for each section: [↓] </legend>
+    <div id="choice_form_body">
+    <p><b>Widths (whole, left column, right column [use px [150px] or % [15%])</b><p>
+    <div class="field widthfield">              
+                <input size="7" id="subskinswidth1" name="subskinswidth1" tal:attributes="value here/portal_subskinstool/SubSkinsWidth1" />
+                <input size="7" id="subskinswidth2" name="subskinswidth2" tal:attributes="value here/portal_subskinstool/SubSkinsWidth2" />
+                <input size="7" id="subskinswidth3" name="subskinswidth3" tal:attributes="value here/portal_subskinstool/SubSkinsWidth3" />
+    </div>
+            
+    <div class="colorschemes" tal:repeat="cs view/tool/listColors">
+        <table tal:attributes="id python: cs[0]">
+        <tr height="20px">
+        <tal:colors tal:repeat="c python:cs[1]">
+        <td width="25px" tal:attributes="bgcolor c">&nbsp;</td>
+        </tal:colors>
+        </tr></table>
+
+    </div>( <--- click 
+    <div class="visualClear"><!-- --></div>    
+    
+    <div class="colorschemesII" tal:repeat="cs view/tool/listColors">
+        <table tal:attributes="id python: cs[0]">
+        <tr height="15px">
+        <tal:colorsii tal:repeat="c python:cs[1]">
+        <td width="15px" tal:attributes="bgcolor c">&nbsp;</td>
+        </tal:colorsii>
+        </tr></table>
+
+    </div>
+
+
+            <div class="field colorschemefield">
+                <label>|0] Select Color scheme</label>
+                <img class="previous" src="ico_arrow_previous.gif" title="Previous (or press p"
+                     tal:attributes="src string: $portal_url/ico_arrow_previous.gif"/>
+                <img class="next" src="ico_arrow_next.gif" title="Next (or press 0)"
+                     tal:attributes="src string: $portal_url/ico_arrow_next.gif"/>
+               
+                <select id="colorschemes_choice" name="colorschemes_choice" onchange="switchcolors(this.value, this.options)"
+                    tal:define="current python:view.tool.hasProperty('colorschemes') and view.tool.getProperty('colorschemes') or ''"
+                    id="default_navigation"
+                    size="1">
+                    <option value="">None</option>
+                    <tal:block tal:repeat="colorscheme python:view.tool.getAvailableChoices('colorschemes')">
+                        <option tal:attributes="value colorscheme/id;
+     selected python:current==colorscheme['id'] and 'selected' or '';"
+                            tal:content="colorscheme/title"></option>
+                    </tal:block>
+                </select>
+            </div>
+<tal:block tal:condition="not:here/portal_subskinstool/brosho">
+<script>$(document).ready(function() {
+			$(document).shortkeys({
+				'c':          function () { $('.colorschemefield .next').click(); },
+				'v':          function () { $('.colorschemefield .previous').click(); },
+				'1':          function () { $('.base .next').click(); },
+				'q':          function () { $('.base .previous').click(); },
+				'2':          function () { $('.top .next').click(); },
+				'w':          function () { $('.top .previous').click(); },
+				'3':          function () { $('.text .next').click(); },
+				'e':          function () { $('.text .previous').click(); },
+				'4':          function () { $('.globalnav .next').click(); },
+				'r':          function () { $('.globalnav .previous').click(); },
+				'5':          function () { $('.portlets .next').click(); },
+				't':          function () { $('.portlets .previous').click(); },
+				'6':          function () { $('.navigation .next').click(); },
+				'y':          function () { $('.navigation .previous').click(); },
+				'7':          function () { $('.calendar .next').click(); },
+				'u':          function () { $('.calendar .previous').click(); },
+				'8':          function () { $('.bottom .next').click(); },
+				'i':          function () { $('.bottom .previous').click(); },
+				'0':          function () { $('.colorschemefield .next').click(); },
+				'p':          function () { $('.colorschemefield .previous').click(); },			
+			});
+		});
+		</script>
+</tal:block>		
+<script>$(document).ready(function() {
+			$('.documentEditable').removeClass();
+			$('.state-private, .state-private, .state-visible, .state-published, .state-pending, .state-expired, .syndicated').removeClass();
+			$('#edit-bar').remove();
+		});
+</script>		
+		
+		
+<script>
+function switchcolors(id, list) {
+  for(i=1;i<list.length;i++) {
+    document.getElementById(list[i].value).style.display='none'
+  }
+  if(id!='') document.getElementById(id).style.display='inline'
+}
+jQuery(function() {switchcolors(document.getElementById('colorschemes_choice').value, document.getElementById('colorschemes_choice').options)});
+
+
+/* Begin Live preview Javascript */
+
+
+var currentStyleSelection = {};
+function saveCurrentStyles() {
+    jQuery('#subskins_prefs_styles select').each(function() {
+        currentStyleSelection[this.id] = this.value;
+    });
+
+}
+jQuery(saveCurrentStyles);
+function initialize_select() {
+    jQuery('#subskins_prefs_styles select').change(function(){
+        if (this.id == 'colorschemes_choice') {
+            newColorSchemeSelected(this.value);
+
+        }else if (currentStyleSelection[this.id] != this.value) {
+            switchCss(currentStyleSelection[this.id], this.value);
+            currentStyleSelection[this.id] = this.value;
+        }
+            
+    });
+}
+jQuery(initialize_select);
+
+function newColorSchemeSelected(colorscheme_name) {
+    for (var category in currentStyleSelection) {
+        var cssname = currentStyleSelection[category];
+        if (category != 'colorschemes_choice' && cssname != '') {
+            var node = jQuery('style').filter(nodeContainsFactory(cssname))[0];
+            if (node) {
+                newtag = createCssNode(cssname);
+                swapnodes(newtag, node);
+            } else {
+                console.error('Expected to find ' + cssname);
+            }
+
+        }
+    }
+}
+function swapnodes(newtag, oldnode) {
+    // oldnode will contain in its text a url()
+    // we request it, and when we know it's available to the browser
+    // we inject the stylesheet in head, so that content doesn't flicker
+    // var url = jQuery(newtag).text().match(/url\(([^)]+)\)/)[1];
+    // XXX this approach doesn't work. It will flicker.
+    jQuery('head').append(newtag);
+    jQuery('html').hide(0);
+    jQuery(oldnode).detach();
+    jQuery('html').fadeIn(0);
+}
+
+function createCssNode(styleSheetName) {
+    var currentColorScheme = jQuery('#colorschemes_choice')[0].value; 
+    // we choose a random (the first, really) css from portal_css
+    // and use it as a template to build another css import html node
+    var templateCss = jQuery('style').filter(nodeContainsFactory('portal_css'))
+                                     .filter(nodeContainsFactory('@import')).html();
+    var colorSchemeToken = "?colorscheme=" + currentColorScheme;
+    var thisStyle = templateCss.replace(/[^\/]+$/,styleSheetName) + colorSchemeToken;
+    var newtag = '<' + 'style type="text/css" media="all"' + '>' + thisStyle + ');' + '<' + '/style>';
+    return jQuery(newtag);
+}
+
+function switchCss(previousCss,nextCss) {
+    var newtag;
+    var node = jQuery('style').filter(nodeContainsFactory(previousCss))[0];
+    if (previousCss == '' || node === undefined) {
+        var newtag = createCssNode(nextCss);
+        jQuery('head').append(newtag);
+    } else {
+        if (nextCss=='') {
+            jQuery(node).remove();
+        } else {
+            newinnerhtml = node.innerHTML.replace(previousCss, nextCss);
+            newtag = '<' + 'style type="text/css" media="all"' + '>' + newinnerhtml + ');' + '<' + '/style>';
+            swapnodes(jQuery(newtag), node);
+        }
+    }
+}
+
+function nodeContainsFactory(expr) {
+    filterExpr = expr;
+    function nodeContains(node) {
+        if (jQuery(this).html().indexOf(filterExpr)>=0)
+            return true;
+        return false;
+    }
+    return nodeContains;
+}
+/* End Live preview Javascript */
+
+</script>
+             <tal:definition define="global number python:0;">
+            <tal:loop tal:repeat="category python:view.tool.getStylesheetCategories()">
+            <div  tal:define="global number python:number + 1;" class="field" tal:attributes="class python:'field ' + category['id']">
+                <label tal:content="python:'[' + str(number) + '] ' + category['label']">sub skin label</label>
+                <tal:block tal:condition="not:python:category['id']=='extra'">
+                <img class="previous" src="ico_arrow_previous.gif" title="Previous"
+                     tal:attributes="src string: $portal_url/ico_arrow_previous.gif"/>
+                <img class="next" src="ico_arrow_next.gif" title="Next"
+                     tal:attributes="src string: $portal_url/ico_arrow_next.gif; title python:'next (or press ' + str(number) + ')'"/>
+                    <select tal:attributes="name python:category['id']+'_choice';
+                                            id python:category['id']+'_choice'" 
+                        tal:define="current python:view.tool.hasProperty(category['id']) and view.tool.getProperty(category['id']) or ''"
+                        id="default_navigation"
+                        size="1">
+                        <option value="">None</option>
+                        <tal:block tal:repeat="s python:view.tool.getAvailableChoices(category['id'])">
+                            <option tal:attributes="value s/id;
+                                    selected python:current==s['id'] and 'selected' or '';
+                                                    "
+                                tal:content="s/title"></option>
+                        </tal:block>
+                    </select>
+                </tal:block>
+                <tal:block tal:condition="python:category['id']=='extra'">
+                <div tal:attributes="name python:category['id']+'_choice';
+                            id python:category['id']+'_choice'" 
+                    tal:define="current python:view.tool.hasProperty(category['id']) and view.tool.getProperty(category['id']) or ''"
+                    id="default_navigation">
+                    <tal:block tal:repeat="s python:view.tool.getAvailableChoices(category['id'])">
+                        <input type="checkbox" tal:attributes="name python:category['id']+'_choice'; 
+                                value s/id; 
+                                checked python:s['id'] in current and 'selected' or ''" >
+                               <span tal:content="s/title" /><br>
+                    </tal:block>
+                </div>               
+                </tal:block>
+            </div>
+            </tal:loop>
+            </tal:definition>
+
+    <div class="cssfield">Extra css (only works with medialog.subskins greater than 4.1b1)              
+       <textarea id="subskinscss" name="subskinscss" tal:content="here/portal_subskinstool/SubSkinsCSS" />
+    </div>    
+    <div class="brosho">
+       <input type="checkbox" id="brosho" name="brosho" checked tal:attributes="checked here/portal_subskinstool/brosho" />
+         Enable Brosho plug-in (click save and reopen this panel) 
+    </div>   
+            
+<p><a href="" target="_blank" tal:attributes="href string: $portal_url/subskins_colours_view">
+Click here to see colorschemes</a> 
+<br>            
+<p><a href="" tal:attributes="href string: $portal_url/portal_view_customizations/manage">
+Click here to customize the viewlets</a> (changing the footer, colophon etc.)
+<br>
+<a href="" tal:attributes="href string: $portal_url/@@manage-viewlets">
+Click here to manage viewlets</a> (changing the order of stuff on a page, hide the search box etc.)
+</p>
+
+
+
+       <div class="formControls">
+                <input class="context"
+                       type="submit"
+                       name="submit"
+                       value="Save"
+                       i18n:attributes="value label_save;"
+                       />
+            </div>
+
+        <input type="hidden" name="form.submitted" value="1" />
+      </div>
+      </fieldset>
+</form>
+</span>
+<script>
+jq('#choice_form_body img.next').click(
+    function(){
+        var curr_selection = jq(this).parent().find('option:selected');
+        if (curr_selection.length) 
+            curr_selection.removeAttr('selected').next('option').attr('selected', 'selected');
+        else {
+            var all_items = jq(this).parent().find('option');
+            jq(all_items[0]).attr('selected', 'selected');
+        }
+        jq(this).parent().find('select').change();
+    }
+
+);
+jq('#choice_form_body img.previous').click(
+    function(){
+        var curr_selection = jq(this).parent().find('option:selected');
+        if (curr_selection.length) 
+            curr_selection.removeAttr('selected').prev('option').attr('selected', 'selected');
+        else {
+            var all_items = jq(this).parent().find('option');
+            var last_item = all_items[all_items.length -1];
+            jq(last_item).attr('selected', 'selected');
+        }
+        jq(this).parent().find('select').change();
+    }
+
+);
+
+jq('.colorschemes table').click( 
+	function () { 
+	jq('.colorschemesII').toggle();
+	}
+);
+
+jq('.colorschemesII  table').click( 
+	function () { 
+	jq('select#colorschemes_choice').val(this.id).change();
+	}
+);
+   
+
+</script>
+<tal:block tal:condition="here/portal_subskinstool/brosho">
+<script type="text/javascript" tal:content='structure here/subskins.globalnav.brosho.js'></script>
+<script type="text/javascript" tal:content='structure here/subskins.brosho.js'></script>
+<link rel="stylesheet" type=" text/css" href="subskins.brosho.css" />
+</tal:block>

@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<div metal:fill-slot="main">
+ <h2 i18n:translate="heading_skin_setup">SubSkins ColorSchemes</h2><p><br /></p>
+<tal:colorschemes tal:repeat="cs here/portal_subskinstool/listColors">
+<span tal:attributes="id python:'colors_'+cs[0]" style="display: inline">
+<table><tr height="30px">
+<tal:colors tal:repeat="c python:cs[1]">
+<td width="30px" tal:attributes="bgcolor c">&nbsp;</td>
+</tal:colors>
+</tr></table>
+
+</span><p><span tal:content=cs /></p> <p><br />
+</tal:colorschemes >
+</div>
+</body>
+</html>

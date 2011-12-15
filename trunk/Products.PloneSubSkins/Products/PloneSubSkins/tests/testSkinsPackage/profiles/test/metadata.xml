@@ -1,0 +1,7 @@
+<metadata>
+  <description>This is a test profile used in PloneSubSkins tests</description>
+  <version>1.0</version>
+  <dependencies>
+    <dependency>profile-Products.PloneSubSkins:default</dependency>
+  </dependencies>
+</metadata>

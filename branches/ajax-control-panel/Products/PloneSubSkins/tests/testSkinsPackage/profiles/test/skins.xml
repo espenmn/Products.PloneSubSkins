@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<object name="portal_skins" allow_any="False" cookie_persistence="False"
+   default_skin="subskinstest">
+
+ <object name="subskinstest_base"
+    meta_type="Filesystem Directory View"
+    directory="Products.PloneSubSkins.tests.testSkinsPackage:skins/subskinstest_base"/>
+ <object name="subskinstest_top"
+    meta_type="Filesystem Directory View"
+    directory="Products.PloneSubSkins.tests.testSkinsPackage:skins/subskinstest_top"/>
+ <object name="subskinstest_colorschemes"
+    meta_type="Filesystem Directory View"
+    directory="Products.PloneSubSkins.tests.testSkinsPackage:skins/subskinstest_colorschemes"/>
+
+ <skin-path name="subskinstest" based-on="Plone Default">
+ 
+  <layer name="medialog_subskinsiii_custom_images"
+     insert-after="custom"/>
+  <layer name="medialog_subskinsiii_custom_templates"
+     insert-after="medialog_subskinsiii_custom_images"/>
+  <layer name="medialog_subskinsiii_styles"
+     insert-after="medialog_subskinsiii_custom_templates"/>
+
+  <layer name="subskinstest_base"
+     insert-after="custom"/>
+  <layer name="subskinstest_top"
+     insert-after="subskinstest_base"/>
+  <layer name="subskinstest_colorschemes"
+     insert-after="subskinstest_base"/>
+
+ </skin-path>
+
+</object>

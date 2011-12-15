@@ -1,0 +1,86 @@
+
+.detatched #subskins_prefs_styles {
+	position: fixed;
+	bottom:0;
+	right:0;
+    font-size: 9px;
+	background-color: white;
+	z-index: 10;
+		width: 430px;
+}
+
+#choice_form_body * {
+	font: 9px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	line-height: 100% !important;
+
+}
+
+#subskins_prefs_styles legend {
+    cursor: pointer;
+}
+
+#subskins_prefs_styles label {
+	width: 140px;
+	display: block; 
+	margin-right: 4px;
+	float: left;
+}
+
+#choice_form_body * {
+	font-size: 10px;
+	margin: 0;
+}
+
+#choice_form_body select {
+	border: 1px solid #CCC;
+	width: 200px;
+	 
+} 
+
+#choice_form_body .context {
+	margin: 6px 0;
+	padding: 3px 20px;
+	text-transform: uppercase;
+}
+
+.widthfield  {
+    width: 180px;
+    display: block;
+    float: left;
+    height: 27px;	
+}
+
+.cssfield  {
+    padding-bottom: 5px !important;
+    display: block;
+}
+
+#extra_choice{
+    display:block;
+    height:83px;
+    overflow-y:scroll;
+    margin-left:193px;
+    width:193px;
+    padding:  1px 0 1px 5px;
+    border: 1px solid #989898;
+}
+
+div.colorschemes {
+    display: inline;
+    width: 190px;
+    float: left;
+}
+.colorschemesII {
+	display: none;
+}
+
+.colorschemesII table {
+	display: block; 
+	float: left;
+	border-top: 3px	solid white;
+	border-bottom: 2px	solid white;
+	border-right:  12px solid white;
+	height: 16px;
+}

@@ -1,0 +1,87 @@
+Changelog
+=========
+
+4.7.1
+-----
+Fixed the upgrade step so it works with version above 4.2 too
+
+4.7
+-----
+Added upgrade step so upgrade from Products.PloneSubSkins < 4.2 doesn't break site.
+
+4.6.6
+-----
+Fix so it installs on windows http://plone.org/products/subskins/issues/12 [Jesse Hager].
+
+4.6.5
+-----
+Disabled the shortcuts when brosho is enabled [espen].
+
+4.6.4
+-----
+Added the shortkeys for the different skins before each label [espen].
+
+4.6.3
+-----
+Added js script to disable states on navigation when control panel is active [espen].
+
+4.6.2
+-----
+Added js script to remove "edit-bar" when using control panel [espen].
+
+4.6.1
+-----
+Added js script to remove "documentEditable" class when control panel is present [espen].
+
+4.6
+-----
+Added keyboard shortcuts to be used while at the subskins control panel [espen].
+The following keys works:
+12345670c
+qwertyupb
+
+4.5.1
+______
+Changed the get_base_properties script (thanks moo-_-) just comment out the lines for getting base properties for context [espen]. Take a look at product medialog.foldersubskins to understand how this works.
+
+4.5
+___
+
+Added (hidden) possibility to select colours based on where you are [espen].
+This option is for testing out different looks on the same site.
+You will have to customize get_base_properteies, like this:
+return context.restrictedTraverse('@@subskins_get_folder_base_properties')()
+
+
+4.4
+___
+
+Added option to click on colorschmes instead of selecting them [espen].
+
+4.3.1
+___
+Added "click on colorschme". Thanks for advice from Mike Rhodes on the jquery part [espen].
+Added brosho plugin [espen].
+Added extra field for css [espen].
+
+4.1
+___
+Switched to using select boxes (instead of multiselect) for the "extra" selections so its easier to see what is selected [espen].
+
+4.0
+---
+
+* Plone 4.0 compatible [espen]-
+* Added multiselect extra category [espen].
+* Use titles to list css in the form [espen].
+
+3.2
+---
+
+* Live preview of selected css without page reload.
+
+3.1
+----------------
+
+* Initial release
+

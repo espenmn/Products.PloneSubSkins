@@ -1,0 +1,6 @@
+.DS_Store
+.pyc
+*.pyc
+MANIFEST.in
+.svn
+*.egg-info

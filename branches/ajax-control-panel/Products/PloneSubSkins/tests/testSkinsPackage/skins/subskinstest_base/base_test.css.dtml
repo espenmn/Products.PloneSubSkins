@@ -1,0 +1,11 @@
+/*
+  For subskins
+
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+#base_stylesheet_option {
+    color: red;
+}
+
+/* </dtml-with> */

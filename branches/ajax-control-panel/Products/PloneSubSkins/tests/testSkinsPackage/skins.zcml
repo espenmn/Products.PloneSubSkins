@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    i18n_domain="medialog.subskinsiii">
+
+   <!-- File System Directory Views registration -->
+
+   <cmf:registerDirectory
+       name="subskinstest_base"/>
+   <cmf:registerDirectory
+          name="subskinstest_top"/>
+   <cmf:registerDirectory
+       name="subskinstest_colorschemes"/>
+</configure>
