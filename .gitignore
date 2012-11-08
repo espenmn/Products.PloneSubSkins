@@ -4,3 +4,4 @@
 MANIFEST.in
 .svn
 *.egg-info
+*.zip
