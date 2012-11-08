@@ -43,8 +43,6 @@ def setupHideToolsFromNavigation(context):
                 kwargs = {'idsNotToList': current}
                 navtreeProperties.manage_changeProperties(**kwargs)
 
-
-
 def updateRoleMappings(context):
     """after workflow changed update the roles mapping. this is like pressing
     the button 'Update Security Setting' and portal_workflow"""
@@ -55,7 +53,7 @@ def updateRoleMappings(context):
     shortContext = context._profile_path.split(os.sep)[-3]
     if shortContext != 'PloneSubSkins': # avoid infinite recursions
         return
-    wft = getToolByName(site, 'portal_workflow')
+    wft = getToolByName(context.getSite(), 'portal_workflow')
     wft.updateRoleMappings()
     site.portal_subskinstool.manage_permission(
         'Access contents information', acquire=1)
