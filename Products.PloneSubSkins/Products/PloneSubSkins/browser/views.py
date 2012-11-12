@@ -7,11 +7,11 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from zope.interface import Interface
 
-class get_base_properties(BrowserView):
+class subskins_get_base_properties(BrowserView):
     def __call__(self):
         tool = getToolByName(self, 'portal_subskinstool')
         return tool.getBaseProperties()
-        
+ 
 class ChoiceForm(BrowserView):
     @property
     def tool_url(self):
@@ -134,3 +134,5 @@ def get_colorstring(r,g,b):
         if len(colors[i])<2:
             colors[i] = '0' + colors[i]
     return '#' + ''.join(colors)
+    
+    

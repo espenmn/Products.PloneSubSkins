@@ -8,13 +8,7 @@
     version="2008-02-23T20:35:37.468931">
    Hides custom tools from navigation tree for PloneSubSkins
  </import-step>
- <import-step 
-    id="PloneSubSkins-Update-RoleMappings" 
-    handler="Products.PloneSubSkins.setuphandlers.updateRoleMappings"
-    title="Update Workflow role mappings for PloneSubSkins"
-    version="2008-02-23T20:35:37.468931">
-   updates the workflow role mappings for PloneSubSkins
- </import-step>
+
  <import-step 
     id="PloneSubSkins-Ensure-No-Empty_values" 
     handler="Products.PloneSubSkins.setuphandlers.ensure_all_options_are_set"

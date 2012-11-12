@@ -13,6 +13,7 @@ __author__ = """Eric BREHAULT <ebrehault@gmail.com>, Silvio Tomatis <silviot@gma
 __docformat__ = 'plaintext'
 
 
+#from zope.component.hooks import getSite
 from Products.CMFCore.utils import getToolByName
 from zope.interface import implements
 from Products.CMFQuickInstallerTool.interfaces import INonInstallable as INonInstallableProducts

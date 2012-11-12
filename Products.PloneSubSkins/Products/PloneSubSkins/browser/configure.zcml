@@ -31,7 +31,7 @@
       for="*"
       name="subskins_get_base_properties"
       permission="zope2.Public"
-      class=".views.get_base_properties"
+      class=".views.subskins_get_base_properties"
       />
 
   <browser:page
@@ -48,8 +48,6 @@
       class=".views.ColorDimTo"
       allowed_attributes="black white"
       />
-
-
 
   <browser:resource
       name="skin_form_load.js"

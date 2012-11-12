@@ -1,4 +1,4 @@
-## Script (Python) "get_base_properties"
+## Script (Python) "dim_to_white"
 ##bind container=container
 ##bind context=context
 ##bind namespace=
