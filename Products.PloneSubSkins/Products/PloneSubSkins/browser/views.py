@@ -10,16 +10,7 @@ from zope.interface import Interface
 class subskins_get_base_properties(BrowserView):
     def __call__(self):
         tool = getToolByName(self, 'portal_subskinstool')
-        #next line is a workaround for a theme without dtml
-        sheetname=SubSkinsColors-igly
-        if self.REQUEST.get('colorscheme'):
-            sheetname = self.REQUEST.get('colorscheme')
-        else:
-            sheetname = tool.getProperty('colorschemes')
-        result = dict(getattr(self, sheetname).propertyItems())
-        for propname in ['SubSkinsWidth1', 'SubSkinsWidth2', 'SubSkinsWidth3', 'SubSkinsCSS']:
-            result[propname] = getattr(self, propname)
-        return result
+        return tool.getBaseProperties()
  
 class ChoiceForm(BrowserView):
     @property

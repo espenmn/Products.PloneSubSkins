@@ -171,7 +171,7 @@ class SubSkinsTool(UniqueObject, BaseContent, SimpleItemWithProperties, BrowserD
     security.declarePublic('getBaseProperties')
     def getBaseProperties(self):
         #next line is a workaround for a theme without dtml
-        sheetname=SubSkinsColors-igly
+        sheetname='SubSkinsColors-igly'
         if self.REQUEST.get('colorscheme'):
             sheetname = self.REQUEST.get('colorscheme')
         else:
