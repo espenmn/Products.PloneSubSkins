@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '4.7.3'
+version = '4.7.4'
 
 setup(name='Products.PloneSubSkins',
       version=version,

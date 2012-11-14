@@ -1,9 +1,9 @@
 Changelog
 =========
 
-4.7.3
+4.7.4
 -----
-Fixed to get the color schemes to work with Plone 4.2
+Fixes to get the color schemes to work properly with Plone 4.2
 
 
 4.7.1
