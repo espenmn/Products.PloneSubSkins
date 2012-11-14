@@ -1,6 +1,11 @@
 Changelog
 =========
 
+4.7.3
+-----
+Fixed to get the color schemes to work with Plone 4.2
+
+
 4.7.1
 -----
 Fixed the upgrade step so it works with version above 4.2 too
