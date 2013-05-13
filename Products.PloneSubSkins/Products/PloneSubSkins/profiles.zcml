@@ -15,13 +15,15 @@
       />
 
       <genericsetup:upgradeStep
-          title="PloneSubSkins"
+          title="PloneSubSkins Upgrade to 4.7.1"
           description="Upgrades PloneSubSkins to 4.7 version"
-          destination="4.7.1"
-	  handler="Products.PloneSubSkins.setuphandlers.upgrade_from_unknown"
+          source="*"
+          destination="10"
+          handler="Products.PloneSubSkins.setuphandlers.upgrade_from_unknown"
           sortkey="1"
           profile="Products.PloneSubSkins:default"
           />
+        
 
   <!-- ##code-section profiles.zcml #fill in your manual code here -->
   <!-- ##/code-section profiles.zcml -->

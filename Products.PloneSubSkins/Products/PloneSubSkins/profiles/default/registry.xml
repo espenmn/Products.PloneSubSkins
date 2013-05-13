@@ -1,0 +1,12 @@
+<registry>
+  <record name="Products.ResourceRegistries.interfaces.settings.IResourceRegistriesSettings.resourceBundlesForThemes" 
+  interface="Products.ResourceRegistries.interfaces.settings.IResourceRegistriesSettings" field="resourceBundlesForThemes" purge="False">
+    <value purge="False">
+      <element key="subskins" purge="False">
+        <element>jquery</element>
+        <element>default</element>
+        <element>subskins</element>
+      </element>
+    </value>
+  </record>
+</registry>

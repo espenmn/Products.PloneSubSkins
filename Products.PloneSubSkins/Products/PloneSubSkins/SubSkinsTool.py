@@ -214,7 +214,7 @@ class SubSkinsTool(UniqueObject, BaseContent, SimpleItemWithProperties, BrowserD
     def registerStylesheet(self, resource):
         tool = getToolByName(self, 'portal_css')
         existing = tool.getResourceIds()
-        resource_default = {'media': 'screen', 'rendering': 'import',
+        resource_default = {'media': 'screen', 'rendering': 'import', 'bundle': 'subskins',
                             'enabled': True}
         resource_default.update(resource)
         resource = resource_default
